@@ -3,15 +3,9 @@ import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
-  faShop,
   faPills,
-  faUserAlt,
-  faUserCog,
-  faDashboard,
-  faUserFriends,
   faCircleArrowLeft,
   faCircleArrowRight,
-  faHandHoldingMedical,
 } from "@fortawesome/free-solid-svg-icons";
 
 import Link from "next/link";
@@ -19,7 +13,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 import { Tooltip } from "@material-tailwind/react";
-import NavItems from "../NavItems";
+
+import { routes, settingRoutes } from "../../utils/routes";
 
 export default function Sidebar({ isOpen, setIsOpen, children }: any) {
   const router = useRouter();
@@ -42,114 +37,38 @@ export default function Sidebar({ isOpen, setIsOpen, children }: any) {
       <div className="border-b border-white my-6"></div>
       <div className="font-nunito mt-8">
         <ul className="flex flex-col gap-2">
-          <Link href="/admin">
-            <li
-              className={`flex items-center justify-start text-white  py-2 cursor-pointer  hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-900 hover:border-r-4 hover:border-blue-500 ${current === "/admin"
+          {routes.map((route) => {
+
+            return <Link href={route.path} key={route.name}>
+              <li
+                className={`flex items-center justify-start text-white  py-2 cursor-pointer  hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-900 hover:border-r-4 hover:border-blue-500 ${current === route.path
                   ? "bg-gradient-to-r from-blue-500 to-indigo-900 border-r-4 border-blue-500"
                   : ""
-                }`}
-            >
-              {isOpen ? (
-                <>
-                  <FontAwesomeIcon
-                    icon={faDashboard}
-                    className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
-                  />
-                  <span>Dashboard</span>
-                </>
-              ) : (
-                <Tooltip
-                  title="Dashboard"
-                  placement="right"
-                  content="Dashboard"
-                >
-                  <FontAwesomeIcon
-                    icon={faDashboard}
-                    className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
-                  />
-                </Tooltip>
-              )}
-            </li>
-          </Link>
-          <Link href="/admin/purchase">
-            <li
-              className={`flex items-center justify-start text-white py-2 cursor-pointer  hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-900 hover:border-r-4 hover:border-blue-500 ${current === "/admin/purchase"
-                  ? "bg-gradient-to-r from-blue-500 to-indigo-900 border-r-4 border-blue-500"
-                  : ""
-                } `}
-            >
-              {isOpen ? (
-                <>
-                  <FontAwesomeIcon
-                    icon={faShop}
-                    className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
-                  />
-                  <span>Purchase</span>
-                </>
-              ) : (
-                <Tooltip title="Purchase" placement="right" content="Purchase">
-                  <FontAwesomeIcon
-                    icon={faShop}
-                    className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
-                  />
-                </Tooltip>
-              )}
-            </li>
-          </Link>
-          <Link href="/admin/product">
-            <li
-              className={`flex items-center justify-start text-white py-2 cursor-pointer  hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-900 hover:border-r-4 hover:border-blue-500 ${current === "/admin/product"
-                  ? "bg-gradient-to-r from-blue-500 to-indigo-900 border-r-4 border-blue-500"
-                  : ""
-                }`}
-            >
-              {isOpen ? (
-                <>
-                  <FontAwesomeIcon
-                    icon={faHandHoldingMedical}
-                    className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
-                  />
-                  <span>Product</span>
-                </>
-              ) : (
-                <Tooltip title="Product" placement="right" content="Product">
-                  <FontAwesomeIcon
-                    icon={faHandHoldingMedical}
-                    className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
-                  />
-                </Tooltip>
-              )}
-            </li>
-          </Link>
-          <Link href="/admin/user">
-            <li
-              className={`flex items-center justify-start text-white py-2 cursor-pointer  hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-900 hover:border-r-4 hover:border-blue-500 ${current === "/admin/user"
-                  ? "bg-gradient-to-r from-blue-500 to-indigo-900 border-r-4 border-blue-500"
-                  : ""
-                }`}
-            >
-              {isOpen ? (
-                <>
-                  <FontAwesomeIcon
-                    icon={faUserFriends}
-                    className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
-                  />
-                  <span>Employees</span>
-                </>
-              ) : (
-                <Tooltip
-                  title="Employees"
-                  placement="right"
-                  content="Employees"
-                >
-                  <FontAwesomeIcon
-                    icon={faUserFriends}
-                    className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
-                  />
-                </Tooltip>
-              )}
-            </li>
-          </Link>
+                  }`}
+              >
+                {isOpen ? (
+                  <>
+                    <FontAwesomeIcon
+                      icon={route.icon}
+                      className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
+                    />
+                    <span>{route.name}</span>
+                  </>
+                ) : (
+                  <Tooltip
+                    title={route.name}
+                    placement="right"
+                    content={route.name}
+                  >
+                    <FontAwesomeIcon
+                      icon={route.icon}
+                      className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
+                    />
+                  </Tooltip>
+                )}
+              </li>
+            </Link>
+          })}
         </ul>
       </div>
       {isOpen && (
@@ -158,61 +77,38 @@ export default function Sidebar({ isOpen, setIsOpen, children }: any) {
       <div className="border-b border-white mb-2"></div>
       <div className="font-nunito">
         <ul className="flex flex-col gap-2">
-          <Link href="/admin/profile">
-            <li
-              className={`flex items-center justify-start text-white py-2 cursor-pointer  hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-900 hover:border-r-4 hover:border-blue-500 
-              ${current === "/admin/profile"
+          {settingRoutes.map((route) => {
+
+            return <Link href={route.path} key={route.name}>
+              <li
+                className={`flex items-center justify-start text-white  py-2 cursor-pointer  hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-900 hover:border-r-4 hover:border-blue-500 ${current === route.path
                   ? "bg-gradient-to-r from-blue-500 to-indigo-900 border-r-4 border-blue-500"
                   : ""
-                }`}
-            >
-              {isOpen ? (
-                <>
-                  <FontAwesomeIcon
-                    icon={faUserAlt}
-                    className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
-                  />
-                  <span>Profile</span>
-                </>
-              ) : (
-                <Tooltip title="Profile" placement="right" content="Profile">
-                  <FontAwesomeIcon
-                    icon={faUserAlt}
-                    className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
-                  />
-                </Tooltip>
-              )}
-            </li>
-          </Link>
-          <Link href="/admin/permission">
-            <li
-              className={`flex items-center justify-start text-white py-2 cursor-pointer  hover:bg-gradient-to-r hover:from-blue-500 hover:to-indigo-900 hover:border-r-4 hover:border-blue-500 ${current === "/admin/permission"
-                ? "bg-gradient-to-r from-blue-500 to-indigo-900 border-r-4 border-blue-500"
-                : ""
-                }`}
-            >
-              {isOpen ? (
-                <>
-                  <FontAwesomeIcon
-                    icon={faUserCog}
-                    className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
-                  />
-                  <span>Permissions</span>
-                </>
-              ) : (
-                <Tooltip
-                  title="Permissions"
-                  placement="right"
-                  content="Permissions"
-                >
-                  <FontAwesomeIcon
-                    icon={faUserCog}
-                    className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
-                  />
-                </Tooltip>
-              )}
-            </li>
-          </Link>
+                  }`}
+              >
+                {isOpen ? (
+                  <>
+                    <FontAwesomeIcon
+                      icon={route.icon}
+                      className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
+                    />
+                    <span>{route.name}</span>
+                  </>
+                ) : (
+                  <Tooltip
+                    title={route.name}
+                    placement="right"
+                    content={route.name}
+                  >
+                    <FontAwesomeIcon
+                      icon={route.icon}
+                      className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
+                    />
+                  </Tooltip>
+                )}
+              </li>
+            </Link>
+          })}
         </ul>
       </div>
       <motion.div

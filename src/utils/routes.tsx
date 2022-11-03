@@ -3,6 +3,7 @@ import {
   faUserAlt,
   faDashboard,
   faHandHoldingMedical,
+  faUserCog,
 } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
@@ -11,25 +12,39 @@ type Props = {
   icon: any;
 };
 
-export const routes: Props[] = [
+export const routes = [
   {
     name: "Dashboard",
     path: "/admin",
-    icon: { faDashboard },
+    icon: faDashboard,
   },
   {
     name: "Purchase",
     path: "/admin/purchase",
-    icon: { faShop },
+    icon: faShop,
   },
   {
     name: "Product",
     path: "/admin/product",
-    icon: { faHandHoldingMedical },
+    icon: faHandHoldingMedical,
   },
   {
     name: "Employees",
     path: "/admin/user",
-    icon: { faUserAlt },
+    icon: faUserAlt,
   },
+];
+
+export const settingRoutes = [
+  {
+    name: "Profile",
+    path: "/admin/profile",
+    icon: faUserAlt,
+  },
+  {
+    name: "Permission",
+    path: "/admin/permission",
+    icon: faUserCog,
+  },
+
 ];

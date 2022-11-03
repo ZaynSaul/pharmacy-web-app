@@ -18,7 +18,7 @@ const NavItems = ({ isOpen }: any) => {
     <ul className="flex flex-col gap-2">
       {items.map(({ name, path, icon, isOpen }: any) => {
         <NavItem
-          key={name}
+          key={path}
           path={path}
           name={name}
           icon={icon}
@@ -27,6 +27,7 @@ const NavItems = ({ isOpen }: any) => {
       })}
       ;
     </ul>
+
   );
 };
 
