@@ -12,6 +12,23 @@
   li {
     @apply list-none;
   }
+  .transition--smooth {
+    @apply transition ease-in-out duration-500 delay-150;
+  }
+  .table--head-cell {
+    @apply text-left py-3 px-3 font-semibold text-base bg-gray-300 first-of-type:rounded-l-md last-of-type:rounded-r-md mb-5;
+  }
+
+  .table--body-cell {
+    @apply text-left text-sm py-4 px-3 border-b-[1px] border-b-gray-300;
+  }
+  .paginate--button {
+    @apply p-2 rounded-md transition ease-in duration-150;
+  }
+
+  .paginate--button-active {
+    @apply paginate--button bg-blue-500 text-white hover:bg-[#1147BB] active:bg-[#dae4fc];
+  }
 }
 
 .react-calendar {

@@ -4,6 +4,9 @@ import {
   faDashboard,
   faHandHoldingMedical,
   faUserCog,
+  faCalendarAlt,
+  faBell,
+  faComments,
 } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
@@ -12,6 +15,19 @@ type Props = {
   icon: any;
 };
 
+// TopBar routes
+export const topBarRoutes = [
+  {
+    icon: faCalendarAlt
+  },
+  {
+    icon: faComments
+  },
+  {
+    icon: faBell
+  },
+]
+// Sidebar routes
 export const routes = [
   {
     name: "Dashboard",

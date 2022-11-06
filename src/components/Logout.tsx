@@ -9,9 +9,8 @@ import { Tooltip, Avatar } from '@material-tailwind/react';
 export default function Logout({ isOpen, setIsOpen }: any) {
   return (
     <div
-      className={`absolute top-16 right-6 w-56 z-50 bg-gradient-to-r from-[#0F172A] to-[#193152] rounded divide-y divide-gray-100 shadow  ${
-        isOpen ? 'block' : 'hidden'
-      }`}
+      className={`absolute top-16 right-6 w-56 z-50 bg-gradient-to-r from-[#0F172A] to-[#193152] rounded divide-y divide-gray-100 shadow  ${isOpen ? 'block' : 'hidden'
+        }`}
     >
       <div className='  w-full'>
         <div className='relative'>
@@ -29,7 +28,7 @@ export default function Logout({ isOpen, setIsOpen }: any) {
               <span className='sr-only'>Close modal</span>
             </button>
           </Tooltip>
-  
+
           <div className='p-6 text-center'>
             <FontAwesomeIcon
               icon={faCircleExclamation}
@@ -42,12 +41,12 @@ export default function Logout({ isOpen, setIsOpen }: any) {
               Click on Yes to Logout
             </h3>
             <div className='flex justify-between items-center'>
-              <button
+              <a href='/api/auth/logout'
                 type='button'
                 className='text-white bg-green-500 hover:bg-transparent   rounded-lg hover:border hover:border-green-500  text-sm font-medium px-5 py-2.5 hover:text-green-500 focus:z-10 '
               >
                 Yes
-              </button>
+              </a>
               <button
                 onClick={() => setIsOpen(false)}
                 type='button'

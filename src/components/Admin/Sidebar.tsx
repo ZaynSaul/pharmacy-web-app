@@ -16,7 +16,14 @@ import { Tooltip } from "@material-tailwind/react";
 
 import { routes, settingRoutes } from "../../utils/routes";
 
-export default function Sidebar({ isOpen, setIsOpen, children }: any) {
+type Props = {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function Sidebar(props: Props) {
+  const { isOpen, setIsOpen } = props;
+
   const router = useRouter();
   const current = router.pathname;
 
@@ -50,7 +57,7 @@ export default function Sidebar({ isOpen, setIsOpen, children }: any) {
                   <>
                     <FontAwesomeIcon
                       icon={route.icon}
-                      className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
+                      className={`w-12 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
                     />
                     <span>{route.name}</span>
                   </>
@@ -90,7 +97,7 @@ export default function Sidebar({ isOpen, setIsOpen, children }: any) {
                   <>
                     <FontAwesomeIcon
                       icon={route.icon}
-                      className={`w-16 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
+                      className={`w-12 text-xl ${isOpen ? "ml-4" : "ml-0"}`}
                     />
                     <span>{route.name}</span>
                   </>

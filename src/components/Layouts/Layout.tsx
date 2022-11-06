@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 import { ToastContainer } from "react-toastify";
-
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import TopBar from "../Admin/TopBar";
 import Sidebar from "../Admin/Sidebar";
 import HeadComponent from "../HeadComponent";
-import MobileSidebar from "../MobileSidebar";
+import MobileSidebar from "../Admin/MobileSidebar";
 
 export default function Layout({ title, children }: any) {
   const [isOpen, setIsOpen] = useState(true);
@@ -37,7 +37,7 @@ export default function Layout({ title, children }: any) {
             setIsOpen={setIsOpen}
           />
           {showMobileSidebar &&
-            <MobileSidebar setShowMobileSidebar={setShowMobileSidebar} />
+            <MobileSidebar setShowMobileSidebar={setShowMobileSidebar} showMobileSidebar={showMobileSidebar} />
 
           }
         </aside>
@@ -52,3 +52,5 @@ export default function Layout({ title, children }: any) {
     </>
   );
 }
+
+export const getServerSideProps = withPageAuthRequired();

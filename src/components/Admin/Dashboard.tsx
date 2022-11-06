@@ -13,11 +13,15 @@ import Stats from './Stats';
 import ChartComponent from '../Charts/ChartComponent';
 
 import Calender from '../Calendar';
-
+import { useSession } from 'next-auth/react';
+import { useUser } from "@auth0/nextjs-auth0";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Dashboard() {
-
+  const session = useSession();
+  const user = useUser();
+  console.log("User:", user);
+  console.log("Dashboard session", session)
   return (
     <>
       <div className=' w-full p-4'>
@@ -43,10 +47,10 @@ export default function Dashboard() {
             </div>
             <div className='flex items-center justify-center gap-2'>
               <FontAwesomeIcon icon={faBuilding} className='text-xl text-[#193152]' />
-              <p>,Address</p>
+              <p>Address</p>
             </div>
             <div>
-              <p>Region</p>
+              <p>Western Region</p>
             </div>
             <div>
               <p>Status</p>
